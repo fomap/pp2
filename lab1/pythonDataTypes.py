@@ -1,13 +1,33 @@
 x = 5
 print(type(x))
+#int
 
-x = 1j
+x = "Hello World"
 print(type(x))
+#str
+
+x = 20.5
+print(type(x))
+#float
+
+x = ["apple", "banana", "cherry"]
+print(type(x))
+#list
+
+x = ("apple", "banana", "cherry")
+print(type(x))
+#tuple
 
 x = {"name" : "John", "age" : 36}
 print(type(x))
+#dict
 
-#specifying data types
-x = int(20)
-x = complex(1j)
-x = dict(name="John", age=36)
+x = True
+print(type(x))
+#bool
+
+
+
+
+
+

@@ -1,26 +1,33 @@
-import random
-x = 1    # int
-y = 2.8  # float
-z = 1j   # complex
+x = 5
+x = float(x)
 
-#convert from int to float:
-a = float(x)
+x = 5.5
+x = int(x)
 
-#convert from float to int:
-b = int(y)
+x = 5
+x = complex(x)
 
-#convert from int to complex:
-c = complex(x)
+x = "Hello World"
+print(len(x))
 
-print(a)
-print(b)
-print(c)
+txt = "Hello World"
+x = txt[0]
 
-print(type(a))
-print(type(b))
-print(type(c))
+txt = "Hello World"
+x = txt[2:5]
 
+txt = " Hello World "
+x = txt.strip()
 
+txt = "Hello World"
+txt = txt.upper()
 
+txt = "Hello World"
+txt = txt.lower()
 
-print(random.randrange(1, 10)) #not invluding 10 aka max is 9
+txt = "Hello World"
+txt = txt.replace("H", "J")
+
+age = 36
+txt = "My name is John, and I am {}"
+print(txt.format(age))
