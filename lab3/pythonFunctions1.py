@@ -90,208 +90,107 @@ def has_33(list):
 
 print(has_33(list_33))            
      
-  '''     
+
+8)
 
 list_in = input("Please enter list of numbers ")
 list_007 = list_in.split()
-str = ''
+result = []
 def has_007(list):
     for i in range(len(list)):
         if list[i] == '0' or list[i] == '7':
-            str += list[i]
+            result.append(list[i])
+
+has_007(list_007)
+finalstr = ' '.join(result)
+if finalstr.find('0 0 7') != -1:
+    print(True)
+else:
+    print(False)
 
 
-print(str)
+9)
+import math
+radius =float(input("Give me the radius "))
+def volume(rad):
+    return  math.pi * (4/3) * rad * rad * rad
+
+print(volume(radius))
 
 
+   
+10)
+li = input("Give me a list ")
+linew = []
+def reinventingSet(list):
+    [linew.append(x) for x in li if x not in linew]
+    print(linew)
+
+reinventingSet(li)
+
+11)
+str1 = input("Please enter string to check for palyndrome ")
+def palindrome(str):
+    str2 = str[::-1]
+    if(str == str2):
+        return True
+    else:
+        return False
+            
+print(palindrome(str1))
+
+12)
+li = input("Please enter histogram ")
+
+def convert(string):
+    li = list(string.split(" "))
+    return li
+
+liInt = []
+
+for i in convert(li):
+    liInt.append(int(i))
+
+def histogram(list):
+    for i in list:
+        j = 0
+        while j < i:
+            print('*', end='')
+            j+=1
+        print("\n")
+
+histogram(liInt)
 
 
+'''
+
+import random
+name = input("Hello! What is your name? ")
+print("Well," + name + ", I am thinking of a number between 1 and 20.")
+adminNumber = random.randint(1, 20)
+
+guestNumber = int(input("Take a guess "))
+guessed = False
+cnt = 0
 
 
-# print(cnt)
+while (guessed == False):
+    print(guestNumber)
 
-# import math
-
-# radius =float(input("Give me the radius"))
-
-
-# def volume(rad):
-#     return  math.pi * (4/3) * rad * rad * rad
-
-
-
-# print(volume(radius))
-
-
-
-
-# str1 = input("Please enter string to check for palyndrome ")
-
-
-# def palindrome(str):
-#     str2 = str[::-1]
-#     if(str == str2):
-#         return True
-#     else:
-#         return False
-        
-        
-# print(palindrome(str1))
-
-
-# name = input("Hello! What is your name?")
-# adminNumber = randint(1, 20)
-
-# print("Well," +  name + ", I am thinking of a number between 1 and 20.")
-
-
-# # guestNumber = int(input("Take a  guess"))
-# # guessed = False
-
-
-# # while (guessed == False):
-# #     print(guestNumber)
-
+    if guestNumber == adminNumber:
+        guessed = True
+        cnt = cnt + 1
+        cnt = str(cnt)
+        print("Good job, " + name + "! You guessed my number in " + cnt + " guesses!")
+        break
+    elif guestNumber < adminNumber:
+        print("too low ")
+        cnt = cnt + 1
+    elif guestNumber > adminNumber:
+        print("too high ") 
+        cnt = cnt + 1
     
-# #     elif guestNumber < adminNumber:
-# #         print("too low")
-# #     elif guestNumber
-
-
-
-# string = input("Enter numbers")
-
-# li = list(string.split())
-# li2 =  []
-
-
-# for i in li:
-#     li2.append(int(i))
-    
-# for x in li2:
-#     print(x)
-
-
-
-# movies = [
-# {
-# "name": "Usual Suspects", 
-# "imdb": 7.0,
-# "category": "Thriller"
-# },
-# {
-# "name": "Hitman",
-# "imdb": 6.3,
-# "category": "Action"
-# },
-# {
-# "name": "Dark Knight",
-# "imdb": 9.0,
-# "category": "Adventure"
-# },
-# {
-# "name": "The Help",
-# "imdb": 8.0,
-# "category": "Drama"
-# },
-# {
-# "name": "The Choice",
-# "imdb": 6.2,
-# "category": "Romance"
-# },
-# {
-# "name": "Colonia",
-# "imdb": 7.4,
-# "category": "Romance"
-# },
-# {
-# "name": "Love",
-# "imdb": 6.0,
-# "category": "Romance"
-# },
-# {
-# "name": "Bride Wars",
-# "imdb": 5.4,
-# "category": "Romance"
-# },
-# {
-# "name": "AlphaJet",
-# "imdb": 3.2,
-# "category": "War"
-# },
-# {
-# "name": "Ringing Crime",
-# "imdb": 4.0,
-# "category": "Crime"
-# },
-# {
-# "name": "Joking muck",
-# "imdb": 7.2,
-# "category": "Comedy"
-# },
-# {
-# "name": "What is the name",
-# "imdb": 9.2,
-# "category": "Suspense"
-# },
-# {
-# "name": "Detective",
-# "imdb": 7.0,
-# "category": "Suspense"
-# },
-# {
-# "name": "Exam",
-# "imdb": 4.2,
-# "category": "Thriller"
-# },
-# {
-# "name": "We Two",
-# "imdb": 7.2,
-# "category": "Romance"
-# }
-# ]
-
-
-
-# for i in movies:
-#     value1 =  i.get('imdb')
-#     print(value1)
-
-
-
-# def imdnScore(str):
-#     for i in movies:
-#         if i.get('name') == str:
-#             if i.get('imdb') > 5.5:
-#                 return True
-#             else:
-#                 return False
-
-
-# inval = input("Enter movie ")
-# print(imdnScore(inval))
-
-
-# subli = []
-
-# def goodMovies():
-#     for i in movies:
-#         if i.get('imdb') > 5.5:
-#             subli.append(i.get('name'))
-            
-            
-            
-# goodMovies()
-# for i in subli:
-#     print(i)
-
-
-# category = input("Enter the category")
-
-# for i in movies:
-#     if i.get("category") == category:
-#         print(i.get("name"))
-
+    guestNumber = int(input("Take a guess "))
 
 
 
