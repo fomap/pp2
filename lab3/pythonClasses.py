@@ -42,8 +42,11 @@ class Rectangle(Shape):
     def area(self):
         return self.length * self.width
 
+<<<<<<< HEAD
 shape3 = Rectangle(2, 3)
 print(shape3.area())
+=======
+>>>>>>> a3bd0e74ef5f6cf95cd5a93dd18974bdc7441a92
 
 
 4)
