@@ -113,3 +113,6 @@ li = [3,345,6,15,1,5,6,2,0,7,95,4,7]
 
 primes = list(filter(lambda x: prime(x), li))
 print(primes)
+
+
+
