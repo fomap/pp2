@@ -85,7 +85,6 @@ def convToUpperCase(str):
 value = input("Enter text: ")
 convToUpperCase(value)
 
-'''
 
 
 def insertSpaceBetweenWords(str):
@@ -94,20 +93,27 @@ def insertSpaceBetweenWords(str):
 value = input("Enter text: ")
 insertSpaceBetweenWords(value)
 
+'''
+
+
+
+def snakeToCamel(str):
+   
+    str = re.sub("[_]", " ", str)
+
+    newstr = str.title()
+    newstr = re.sub(" ", "", newstr)
+    res = newstr[0].lower() + newstr[1:]
+    return(res)
+
+
+value = input("Enter text: ")
+print(snakeToCamel(value))
+
+
+
+# def camelToSnake(str):
 
 
 
 
-
-
-# def snakeToCamel(str):
-#     print(re.sub("[ ,.]", "", str))
-
-# '''
-# collect  aallwords = capitalize + connect + through kostyl make lower
-
-# '''
-
-
-# value = input("Enter text: ")
-# replaceWithColon(value)
