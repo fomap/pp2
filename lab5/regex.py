@@ -1,9 +1,9 @@
 import re
 
 '''
-1)
+
 def text_gates1(str):
-    requirement = '\w*[^a(b*)$]'
+    requirement = '^a(b*)$'
     if re.search(requirement, str):
         return ("Its okay")
     else:
@@ -12,32 +12,35 @@ def text_gates1(str):
 
 value = input("Enter string:")
 print(text_gates1(value))
-'''
 
 
-# def text_gates2(str):
-#     requirement = 'ab/{2,3}'
-#     if re.search(requirement, str):
-#         return ("Yay")
-#     else:
-#         return ("Nay")
+
+def text_gates2(str):
+    requirement = 'ab{2,3}'
+    if re.search(requirement, str):
+        return ("Yay")
+    else:
+        return ("Nay")
     
-# value = input("Enter string:")
-# print(text_gates2(value))    redo this part 
+value = input("Enter string:")
+print(text_gates2(value))  
 
 
 
-# def text_gate3(str):
-#     req = "^[a-z]+_[a-z]$"
-#     if re.search(req, str):
-#         return ("Yay")
-#     else:
-#         return ("Nay")
+def text_gate3(str):
+    req = '^[a-z]+_[a-z]+$'
+    if re.search(req, str):
+        return ("Yay")
+    else:
+        return ("Nay")
     
-# value = input("Enter string ")
-# print(text_gate3(value))
+value = input("Enter string ")
+print(text_gate3(value))
 
-'''
+
+
+
+
 def txtgate4(str):
     req = '[A-Z]+[a-z]+$'
     if re.search(req, str):
@@ -50,7 +53,9 @@ value = input("Enter str: ")
 print(txtgate4(value))
 
 
-def txtgate4(str):
+
+
+def txtgate5(str):
     req = 'a.*?b$'
     if re.search(req, str):
         return ("Yay")
@@ -59,7 +64,7 @@ def txtgate4(str):
     
 
 value = input("Enter str: ")
-print(txtgate4(value))
+print(txtgate5(value))
 
 
 
@@ -67,29 +72,42 @@ print(txtgate4(value))
 def replaceWithColon(str):
     print(re.sub("[ ,.]", ":", str))
 
-
-value = input("Enter text: ")
-replaceWithColon(value)
-
-
-
-'''
-
-
-
-
-def snakeToCamel(str):
-    print(re.sub("[ ,.]", "", str))
-
-'''
-collect  aallwords = capitalize + connect + through kostyl make lower
-
-'''
-
-
 value = input("Enter text: ")
 replaceWithColon(value)
 
 
 
 
+
+def convToUpperCase(str):
+    print(re.findall('[A-Z][^A-Z]*', str))
+
+value = input("Enter text: ")
+convToUpperCase(value)
+
+'''
+
+
+def insertSpaceBetweenWords(str):
+    print(re.sub(r"(\w)([A-Z])", r"\1 \2", str))
+
+value = input("Enter text: ")
+insertSpaceBetweenWords(value)
+
+
+
+
+
+
+
+# def snakeToCamel(str):
+#     print(re.sub("[ ,.]", "", str))
+
+# '''
+# collect  aallwords = capitalize + connect + through kostyl make lower
+
+# '''
+
+
+# value = input("Enter text: ")
+# replaceWithColon(value)
