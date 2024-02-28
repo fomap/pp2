@@ -93,7 +93,6 @@ def insertSpaceBetweenWords(str):
 value = input("Enter text: ")
 insertSpaceBetweenWords(value)
 
-'''
 
 
 
@@ -109,11 +108,19 @@ def snakeToCamel(str):
 
 value = input("Enter text: ")
 print(snakeToCamel(value))
+'''
 
 
 
-# def camelToSnake(str):
+def camelToSnake(str):
+    newstr = re.sub(r"([A-Z])",  r" \1", str)
+    newnewstr = newstr.lower()
+    res = re.sub(r" ",  r"_", newnewstr)
+    out = res[1:] #lowkey situational(?)
+    return(out)
 
+value = input("Enter text: ")
+print(camelToSnake(value))
 
 
 
