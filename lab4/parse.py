@@ -1,7 +1,7 @@
 import json
 from tabulate import tabulate
 
-file = open("sample-data.json",)
+file = open("lab4\sample-data.json")
 
 data = json.load(file)
 
@@ -18,3 +18,6 @@ print(tabulate(table, headers=headers))
 
 
 file.close()
+
+
+

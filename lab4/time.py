@@ -1,13 +1,16 @@
-'''
+
 import datetime
 
 
-1)
+'''
+# 1)
 def backToPast(n):
     return datetime.date.today() - datetime.timedelta(n)
 
 value = int(input("enter how far to go back"))
 print(backToPast(value))
+
+
 
 
 
@@ -28,6 +31,7 @@ def dropMilliseconds():
     return formatted
 
 print(dropMilliseconds())
+
 '''
 
 
@@ -44,3 +48,4 @@ def diffFunction(str1, str2):
 day1 = input("Please enter in YYYY-MM-DD HH:MM:SS format ")
 day2 = input("Please enter in YYYY-MM-DD HH:MM:SS format ")
 print(diffFunction(day1, day2))
+
