@@ -1,1 +1,0 @@
-print(block_list)
