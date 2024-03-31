@@ -34,8 +34,6 @@ game_score_rect.center = (210, 20)
 #Catching sound
 collision_sound = pygame.mixer.Sound('audio/catch.mp3')
 
-# def modofy_paddle(paddleW):
-#     paddle = 
 def detect_collision(dx, dy, ball, rect):
     if dx > 0:
         delta_x = ball.right - rect.left
@@ -53,20 +51,6 @@ def detect_collision(dx, dy, ball, rect):
     elif delta_y > delta_x:
         dx = -dx
     return dx, dy
-
-
-#block settings
-# block_list = []
-# for i in range (0,10):
-#     for j in range (0, 4):
-#         block = pygame.Rect(10 + 120 * i, 50 + 70 * j, 100, 50)
-#         block_list.append(block)
-
-# color_list = []
-# for i in range (0,10):
-#     for j in range (0, 4):
-#         color = (random.randrange(0, 255), random.randrange(0, 255),  random.randrange(0, 255))
-#         color_list.append(color)
 
 
 block_list = [pygame.Rect(10 + 120 * i, 50 + 70 * j,
@@ -101,7 +85,6 @@ for i in widthBuff:
     color_list[i] = (255, 255, 255)
 
 
-# print(block_list)
 #Game over Screen
 losefont = pygame.font.SysFont('comicsansms', 40)
 losetext = losefont.render('Game Over', True, (255, 255, 255))
@@ -172,15 +155,12 @@ while not done:
     if key[pygame.K_RIGHT] and paddle.right < W:
         paddle.right += paddleSpeed
 
-    #overriding with and collider
+    #overriding width and collider
     pygame.draw.rect(screen, (255,255,255), (paddle.x, paddle.y, paddleW, paddleH))
-    paddle =  pygame.Rect(paddle.x, paddle.y, paddleW, paddleH)
-
-    
+    paddle =  pygame.Rect(paddle.x, paddle.y, paddleW, paddleH)  
+    #overriding radius
     pygame.draw.circle(screen, pygame.Color(255, 0, 0), ball.center, ballRadius)
   
-
-
     if ball.bottom > H:
         screen.fill((0, 0, 0))
         screen.blit(losetext, losetextRect)
@@ -189,5 +169,4 @@ while not done:
         screen.blit(wintext, wintextRect)
 
     pygame.display.flip()
-   
     clock.tick(FPS)
