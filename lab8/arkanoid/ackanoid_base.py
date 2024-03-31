@@ -2,7 +2,7 @@ import pygame
 import random
 pygame.init()
 
-W, H = 1200, 800
+W, H = 800, 600
 FPS = 60
 
 screen = pygame.display.set_mode((W, H), pygame.RESIZABLE)
@@ -24,12 +24,12 @@ ball = pygame.Rect(random.randrange(ball_rect, W - ball_rect), H // 2, ball_rect
 dx, dy = 1, -1
 
 
-
 #Game over
 font = pygame.font.SysFont('comicsansms', 40)
 text = font.render('Game Over', True, (255, 255, 255))
 textRect = text.get_rect()
 textRect.center = (W // 2, H // 2)
+
 
 while not done:
     for event in pygame.event.get():
@@ -54,10 +54,10 @@ while not done:
     ball.x += ballSpeed * dx
     ball.y += ballSpeed * dy
 
-    #Collision left 
+    # #Collision left 
     if ball.centerx < ballRadius or ball.centerx > W - ballRadius:
         dx = -dx
-    #Collision right
+    #Collision TOP
     if ball.centery < ballRadius: 
         dy = -dy
     #Collision with paddle
@@ -67,9 +67,5 @@ while not done:
         screen.fill((0, 0, 0))
         screen.blit(text, textRect)
 
-
-
-
-
-    pygame.display.flip()
+    pygame.display.update()
     clock.tick(FPS)
