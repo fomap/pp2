@@ -11,14 +11,14 @@ done = False
 bg = (0, 0, 0)
 
 #paddle
-paddleW = 150
+paddleW = 200
 paddleH = 25
 paddleSpeed = 20
 paddle = pygame.Rect(W // 2 - paddleW // 2, H - paddleH - 30, paddleW, paddleH)
 
 
 #Ball
-ballRadius = 20
+ballRadius = 15
 ballSpeed = 6
 ball_rect = int(ballRadius * 2 ** 0.5)
 ball = pygame.Rect(random.randrange(ball_rect, W - ball_rect), H // 2, ball_rect, ball_rect)
@@ -34,6 +34,8 @@ game_score_rect.center = (210, 20)
 #Catching sound
 collision_sound = pygame.mixer.Sound('audio/catch.mp3')
 
+# def modofy_paddle(paddleW):
+#     paddle = 
 def detect_collision(dx, dy, ball, rect):
     if dx > 0:
         delta_x = ball.right - rect.left
@@ -54,11 +56,51 @@ def detect_collision(dx, dy, ball, rect):
 
 
 #block settings
+# block_list = []
+# for i in range (0,10):
+#     for j in range (0, 4):
+#         block = pygame.Rect(10 + 120 * i, 50 + 70 * j, 100, 50)
+#         block_list.append(block)
+
+# color_list = []
+# for i in range (0,10):
+#     for j in range (0, 4):
+#         color = (random.randrange(0, 255), random.randrange(0, 255),  random.randrange(0, 255))
+#         color_list.append(color)
+
+
 block_list = [pygame.Rect(10 + 120 * i, 50 + 70 * j,
         100, 50) for i in range(10) for j in range (4)]
 color_list = [(random.randrange(0, 255), 
     random.randrange(0, 255),  random.randrange(0, 255))
               for i in range(10) for j in range(4)] 
+
+unbreakNumbers = set()
+for i in range (0, 10):
+    randomNum = random.randrange(0, 40)
+    unbreakNumbers.add(randomNum)
+
+radiusBuff = set()
+for i in range(0, 5):
+    rand = random.randrange(0, 40)
+    if rand not in unbreakNumbers:
+        radiusBuff.add(rand)
+
+widthBuff = set()
+for i in range(0, 5):
+    rand = random.randrange(0, 40)
+    if rand not in unbreakNumbers and rand not in radiusBuff: #created so that every block that has buff in unique
+        widthBuff.add(rand)
+
+for i in unbreakNumbers:
+    color_list[i] = (133, 133, 133)
+    print(i)
+for i in radiusBuff:
+    color_list[i] = (255, 0, 0)
+for i in widthBuff:
+    color_list[i] = (255, 255, 255)
+
+
 # print(block_list)
 #Game over Screen
 losefont = pygame.font.SysFont('comicsansms', 40)
@@ -73,26 +115,23 @@ wintextRect = wintext.get_rect()
 wintextRect.center = (W // 2, H // 2)
 
 
+
 while not done:
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
 
     screen.fill(bg)
     
-    # print(next(enumerate(block_list)))
-    
     [pygame.draw.rect(screen, color_list[color], block)
-     for color, block in enumerate (block_list)] #drawing blocks
-    pygame.draw.rect(screen, pygame.Color(255, 255, 255), paddle)
-    pygame.draw.circle(screen, pygame.Color(255, 0, 0), ball.center, ballRadius)
-    # print(next(enumerate (block_list)))
-
+     for color, block in enumerate (block_list)] 
+  
     #Ball movement
     ball.x += ballSpeed * dx
     ball.y += ballSpeed * dy
 
-    #Collision left 
+    #Collision left & right
     if ball.centerx < ballRadius or ball.centerx > W - ballRadius:
         dx = -dx
     #Collision top
@@ -102,28 +141,30 @@ while not done:
     if ball.colliderect(paddle) and dy > 0:
         dx, dy = detect_collision(dx, dy, ball, paddle)
 
-    #Collision blocks
-    hitIndex = ball.collidelist(block_list)
-
+    #Collision with blocks
+    hitIndex = ball.collidelist(block_list) 
     if hitIndex != -1:
-        hitRect = block_list.pop(hitIndex)
-        hitColor = color_list.pop(hitIndex)
-        dx, dy = detect_collision(dx, dy, ball, hitRect)
-        game_score += 1
-        collision_sound.play()
+        if color_list[hitIndex] == (133, 133, 133): #if block is gray (unbreakable) then we just need to change direction of a ball
+            dy = -dy
+        else:
+            if color_list[hitIndex] == (255, 0, 0):  #radius buff
+                ballRadius += 2
+            elif color_list[hitIndex] == (255, 255, 255): # paddle width buff
+                paddleW += 20
+            if paddleW > 50:
+                paddleW = paddleW - 5
+            ballSpeed += 0.5
+            hitRect = block_list.pop(hitIndex)
+            hitColor = color_list.pop(hitIndex)
+            dx, dy = detect_collision(dx, dy, ball, hitRect)
+            game_score += 1
+            collision_sound.play()
+
         
     #Game score
     game_score_text = game_score_fonts.render(f'Your game score is: {game_score}', True, (255, 255, 255))
     screen.blit(game_score_text, game_score_rect)
-    
-    #Win/lose screens
-    if ball.bottom > H:
-        screen.fill((0, 0, 0))
-        screen.blit(losetext, losetextRect)
-    elif not len(block_list):
-        screen.fill((255,255, 255))
-        screen.blit(wintext, wintextRect)
-    # print(pygame.K_LEFT)
+
     #Paddle Control
     key = pygame.key.get_pressed()
     if key[pygame.K_LEFT] and paddle.left > 0:
@@ -131,6 +172,22 @@ while not done:
     if key[pygame.K_RIGHT] and paddle.right < W:
         paddle.right += paddleSpeed
 
+    #overriding with and collider
+    pygame.draw.rect(screen, (255,255,255), (paddle.x, paddle.y, paddleW, paddleH))
+    paddle =  pygame.Rect(paddle.x, paddle.y, paddleW, paddleH)
+
+    
+    pygame.draw.circle(screen, pygame.Color(255, 0, 0), ball.center, ballRadius)
+  
+
+
+    if ball.bottom > H:
+        screen.fill((0, 0, 0))
+        screen.blit(losetext, losetextRect)
+    elif not len(block_list) - len(unbreakNumbers):
+        screen.fill((255,255, 255))
+        screen.blit(wintext, wintextRect)
 
     pygame.display.flip()
+   
     clock.tick(FPS)
