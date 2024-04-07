@@ -39,22 +39,22 @@ def menu():
 
 
     # Draw square
-    square = pygame.draw.rect(screen,(0,0, 0), [15, 15, 50, 50]) 
+    square = pygame.draw.rect(screen,(242, 206, 219), [15, 15, 50, 50]) 
     pygame.draw.rect(screen, (255,255,255), [25,25,30,30])
     # Draw right triangle
-    rightTriangle = pygame.draw.rect(screen,(0,0, 0), [70, 15, 50, 50])
+    rightTriangle = pygame.draw.rect(screen,(242, 206, 219), [70, 15, 50, 50])
     pygame.draw.polygon(screen, (255,255,255), [(80, 25), (110, 55), (80, 55)]) 
     # # Draw equilateral triangle
-    equilateralTriangle = pygame.draw.rect(screen,(0,0, 0), [125, 15, 50, 50])
+    equilateralTriangle = pygame.draw.rect(screen,(242, 206, 219), [125, 15, 50, 50])
     pygame.draw.polygon(screen, (255,255,255), [(150, 20), (170, 55), (130, 55)])
     # # Draw rhombus
-    rhombus = pygame.draw.rect(screen,(0,0, 0), [180, 15, 50, 50]) 
+    rhombus = pygame.draw.rect(screen,(242, 206, 219), [180, 15, 50, 50]) 
     pygame.draw.polygon(screen, (255,255,255), [(185, 20), (205, 20), (220, 55), (200, 55)])
     # # Draw rectangle
-    rectangle = pygame.draw.rect(screen,(0,0, 0), [235, 15, 50, 50]) 
+    rectangle = pygame.draw.rect(screen,(242, 206, 219), [235, 15, 50, 50]) 
     pygame.draw.rect(screen, (255,255,255), [240, 30, 40,20 ])
     # # Draw circle
-    circle = pygame.draw.rect(screen,(0,0, 0), [290, 15, 50, 50]) 
+    circle = pygame.draw.rect(screen,(242, 206, 219), [290, 15, 50, 50]) 
     pygame.draw.circle(screen, (255,255,255), (315,40), 20)
 
     toolList = square, rightTriangle, equilateralTriangle, rhombus, rectangle, circle
