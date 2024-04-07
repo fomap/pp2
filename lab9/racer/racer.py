@@ -75,12 +75,13 @@ class Player(pygame.sprite.Sprite):
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("coin.png")
+        #randomly chose between 2 types of coins
+        self.randcoin = ["coin.png", "coin2.png"]
+        self.res = random.choice(self.randcoin)
+        self.image = pygame.image.load(self.res)
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(100,SCREEN_WIDTH-40), random.randint(100,SCREEN_HEIGHT-40))
-    def move(self):
-        self.rect.center = (random.randint(100,SCREEN_WIDTH-40), random.randint(100,SCREEN_HEIGHT-40))
-
+   
 
 
 #Setting up Sprites        
@@ -100,18 +101,11 @@ all_sprites.add(P1)
 all_sprites.add(E1)
 
 
-#Adding a new User event 
-INC_SPEED = pygame.USEREVENT + 1
-pygame.time.set_timer(INC_SPEED, 1000)
 
 #Game Loop
 while True:
-    
-    
-    #Cycles through all events occuring  
-    for event in pygame.event.get():
-        if event.type == INC_SPEED:
-              SPEED += 0.5      
+   
+    for event in pygame.event.get(): 
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
@@ -129,8 +123,16 @@ while True:
         DISPLAYSURF.blit(entity.image, entity.rect)
     #on collision between player and coin just move coin to another location and inc score, also play sound so game feels less dead
     if pygame.sprite.spritecollideany(P1, coins):
-        SCORE +=1
-        C1.move()
+        #identofying which coin we collide with, add SCORE accordingly
+        if C1.res == "coin.png":
+            SCORE += 2
+        else:
+            SCORE += 1
+        
+        if SCORE > 15:
+            SPEED += 0.5
+
+        C1.__init__()
         collision_sound.play()
 
 
