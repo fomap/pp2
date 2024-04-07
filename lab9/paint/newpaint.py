@@ -1,4 +1,4 @@
-import pygame, time
+import pygame, time, math
 pygame.init()
 
 
@@ -107,16 +107,32 @@ while not done:
     #square, rightTriangle, equilateralTriangle, rhombus, rectangle, circle
     if activeTool == 0: #square,
         pygame.draw.rect(screen, activeColor, [x,y,dx,dx])
+        pos.clear()
     if activeTool == 1: #rightTriangle
         pygame.draw.polygon(screen,activeColor, [(x,y),(dx, dy),(dx, y)])
-    # if activeTool == 2: #equilateralTriangle
-    #     pygame.draw.polygon(screen,activeColor, [(x,y),(dx, dy),(dx, y)])
-    # if activeTool == 3:# rhombus
-        # pygame.draw.polygon(screen,activeColor, [(x,y),(dx, dy),(dx, y)])
+        pos.clear()
+    if activeTool == 2: #equilateralTriangle
+        a1 = x
+        b1 = y
+        a2 = dx
+        b2 = dy
+
+        distance = math.sqrt((a2 - a1)**2 + (b2 - b1)**2)
+        angle = math.atan2(b2 - b1, a2 - a1)
+        a3 = a1 + distance * math.cos(angle - (1 * math.pi / 3))
+        b3 = b1 + distance * math.sin(angle - (1 * math.pi / 3))
+       
+        pygame.draw.polygon(screen,activeColor, [(a1,b1),(a2, b2),(a3, b3)])
+        pos.clear()
+    if activeTool == 3:# rhombus
+        pygame.draw.polygon(screen,activeColor, [(x +100, y),(x + dx + 100, y),(x + dx, y+ dy),(x, y +dy)])
+        pos.clear()
     if activeTool == 4: #rectangle
         pygame.draw.rect(screen, activeColor, [x,y,dx,dy])
+        pos.clear()
     if activeTool == 5: #circle
         pygame.draw.circle(screen,activeColor, (x,y), dx)
+        pos.clear()
 
    
     if mouse[1] > 90:
