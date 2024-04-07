@@ -56,15 +56,6 @@ while not done:
     
     draw(pos)  
          
-    #if u want to draw rectangle/circle use right mouse button to determine start/end position and click r/c for rectangle and circle respectively
-    
-    if rectangle:
-        pygame.draw.rect(screen, activeColor, pygame.Rect(start_pos[0], start_pos[1], end_pos[0], end_pos[1]))
-    if circle:
-        radius = max(abs(end_pos[0] - start_pos[0]), abs(end_pos[1] - start_pos[1]))
-        pygame.draw.circle(screen, activeColor, start_pos, radius)
-   
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -78,12 +69,7 @@ while not done:
             #clear canvas
             if event.key == pygame.K_e:
                 pos.clear()
-                rectangle = False
-                circle = False
-            if event.key == pygame.K_r:
-                rectangle = True       
-            if event.key == pygame.K_c:
-                circle = True   
+
 
 
                   
@@ -91,11 +77,7 @@ while not done:
             for i in range(len(colors)):
                 if colors[i].collidepoint(event.pos):
                     activeColor = rgsList[i]
-            if event.button == 3:  
-                start_pos = event.pos
-        if event.type == pygame.MOUSEBUTTONUP:
-            if event.button == 3:  
-                end_pos = event.pos
+            
 
  
     
